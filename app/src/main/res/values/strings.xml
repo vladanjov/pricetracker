@@ -1,3 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PriceTracker</string>
+    <string name="app_name">Price Tracker</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="connecting">Connecting…</string>
+    <string name="start_feed">Start Feed</string>
+    <string name="stop_feed">Stop Feed</string>
+    <string name="back">Back</string>
+    <string name="price_up">Price increased</string>
+    <string name="price_down">Price decreased</string>
 </resources>
