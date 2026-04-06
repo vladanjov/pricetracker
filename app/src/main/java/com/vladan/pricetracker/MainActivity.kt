@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
@@ -23,6 +24,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             PriceTrackerTheme {
                 val navController = rememberNavController()
+                LaunchedEffect(Unit) {
+                    navController.handleDeepLink(intent)
+                }
                 val isRunning by mainViewModel.isRunning.collectAsStateWithLifecycle()
                 PriceTrackerNavHost(
                     navController = navController,

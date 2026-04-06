@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navDeepLink
 import com.vladan.pricetracker.feature.details.presentation.DetailsScreen
 import com.vladan.pricetracker.feature.feed.presentation.FeedScreen
 
@@ -27,7 +28,11 @@ fun PriceTrackerNavHost(
             )
         }
 
-        composable<Route.Details> {
+        composable<Route.Details>(
+            deepLinks = listOf(
+                navDeepLink<Route.Details>(basePath = "stocks://symbol")
+            )
+        ) {
             DetailsScreen(
                 onBack = { navController.popBackStack() }
             )
