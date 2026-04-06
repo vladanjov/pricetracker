@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    jacoco
 }
 
 android {
@@ -24,6 +25,7 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
+            enableUnitTestCoverage = true
         }
 
         release {
@@ -66,4 +68,56 @@ dependencies {
 
     implementation(libs.okhttp)
     implementation(libs.kotlinx.serialization.json)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
+}
+
+tasks.register<JacocoReport>("jacocoTestReport") {
+    dependsOn("testDebugUnitTest")
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+
+    sourceDirectories.setFrom(files("src/main/java"))
+    classDirectories.setFrom(
+        fileTree("${layout.buildDirectory.get().asFile}/intermediates/classes/debug/transformDebugClassesWithAsm/dirs") {
+            exclude(
+                "**/R.class",
+                "**/R\$*.class",
+                "**/BuildConfig.*",
+                "**/Manifest*.*",
+                // Hilt / Dagger generated
+                "**/Hilt_*.*",
+                "**/Dagger*.*",
+                "**/*_Factory*.*",
+                "**/*_HiltModules*.*",
+                "**/*_HiltComponents*.*",
+                "**/*_MembersInjector*.*",
+                "**/*_ComponentTreeDeps*.*",
+                "**/*_GeneratedInjector*.*",
+                "**/hilt_aggregated_deps/**",
+                // Compose generated
+                "**/*ComposableSingletons*.*",
+                // App & Activity classes
+                "**/PriceTrackerApp*.*",
+                "**/MainActivity*.*",
+                // Core package
+                "**/core/**",
+                // DI modules
+                "**/di/**",
+                // Presentation layer (screens, components, UI state) - keep ViewModels
+                "**/presentation/components/**",
+                "**/presentation/*Screen*.*",
+                "**/presentation/*UiState*.*"
+            )
+        }
+    )
+    executionData.setFrom(
+        files("${layout.buildDirectory.get().asFile}/outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec")
+    )
 }
