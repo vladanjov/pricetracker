@@ -22,9 +22,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.vladan.pricetracker.R
 import com.vladan.pricetracker.core.common.ConnectionStatus
 import com.vladan.pricetracker.feature.feed.presentation.components.ConnectionStatusIndicator
 import com.vladan.pricetracker.feature.feed.presentation.components.StockListItem
@@ -63,11 +65,11 @@ fun FeedScreen(
                 actions = {
                     if (isRunning) {
                         TextButton(onClick = onToggleRunning) {
-                            Text("Stop", color = MaterialTheme.colorScheme.error)
+                            Text(stringResource(R.string.stop), color = MaterialTheme.colorScheme.error)
                         }
                     } else {
                         TextButton(onClick = onToggleRunning) {
-                            Text("Start", color = com.vladan.pricetracker.core.designsystem.PriceGreen)
+                            Text(stringResource(R.string.start), color = com.vladan.pricetracker.core.designsystem.PriceGreen)
                         }
                     }
                 },
@@ -97,7 +99,7 @@ fun FeedScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "No stocks available",
+                        text = stringResource(R.string.no_stocks_available),
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

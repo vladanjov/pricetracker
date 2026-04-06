@@ -29,11 +29,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.vladan.pricetracker.R
 import com.vladan.pricetracker.core.designsystem.PriceChangeIndicator
 import com.vladan.pricetracker.feature.details.presentation.components.PriceCard
 
@@ -61,7 +63,7 @@ fun DetailsScreen(
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 },
@@ -91,7 +93,7 @@ fun DetailsScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Stock not found",
+                        text = stringResource(R.string.stock_not_found),
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -136,7 +138,7 @@ fun DetailsScreen(
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             Text(
-                                text = "About",
+                                text = stringResource(R.string.about),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold
                             )
@@ -159,15 +161,15 @@ fun DetailsScreen(
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             Text(
-                                text = "Details",
+                                text = stringResource(R.string.details),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold
                             )
                             Spacer(modifier = Modifier.height(8.dp))
-                            DetailRow("Symbol", stock.symbol)
-                            DetailRow("Previous Price", stock.formattedPreviousPrice)
-                            DetailRow("Current Price", stock.formattedPrice)
-                            DetailRow("Change", stock.formattedChangePercent)
+                            DetailRow(stringResource(R.string.symbol), stock.symbol)
+                            DetailRow(stringResource(R.string.previous_price), stock.formattedPreviousPrice)
+                            DetailRow(stringResource(R.string.current_price), stock.formattedPrice)
+                            DetailRow(stringResource(R.string.change), stock.formattedChangePercent)
                         }
                     }
                 }

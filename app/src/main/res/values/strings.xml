@@ -9,4 +9,16 @@
     <string name="back">Back</string>
     <string name="price_up">Price increased</string>
     <string name="price_down">Price decreased</string>
+    <string name="stop">Stop</string>
+    <string name="start">Start</string>
+    <string name="stock_not_found">Stock not found</string>
+    <string name="about">About</string>
+    <string name="details">Details</string>
+    <string name="symbol">Symbol</string>
+    <string name="previous_price">Previous Price</string>
+    <string name="current_price">Current Price</string>
+    <string name="change">Change</string>
+    <string name="no_stocks_available">No stocks available</string>
+    <string name="reconnecting">Reconnecting…</string>
+    <string name="error">Error</string>
 </resources>
